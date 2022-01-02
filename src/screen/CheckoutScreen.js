@@ -4,12 +4,15 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  Alert,
 } from 'react-native';
 import HeaderBackButton from '../components/HeaderBackButton';
 
 import CustomButton from '../components/CustomButton';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../components/shop/CartItem';
+import * as cartAction from '../../store/action/cart';
+
 import {
   removeProduct,
   reduceProduct,
@@ -53,6 +56,12 @@ const CheckoutScreen = ({ navigation }) => {
   });
 
   const dispatch = useDispatch();
+
+  const handleCheckout = () => {
+    navigation.navigate('Home');
+    dispatch(cartAction.clearCart());
+    Alert.alert('Thank you for your purchase!')
+  }
 
   let total = 0;
 
@@ -127,9 +136,7 @@ const CheckoutScreen = ({ navigation }) => {
         <Text style={styles.navigationHint}>{time > 0 ? `Navigating to home after ${time} sec` : 'Navigating'}</Text>
         <CustomButton
           title="Checkout"
-          onPress={() => {
-            navigation.navigate('Home');
-          }}
+          onPress={() => handleCheckout()}
         />
       </View>
     </View>

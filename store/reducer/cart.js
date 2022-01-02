@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   REMOVE_PRODUCT,
   INCREASE_PRODUCT,
+  CLEAR_CART,
 } from '../action/cart';
 import cart from '../model/cart';
 
@@ -30,7 +31,7 @@ const cartReducer = (state = initState, action) => {
         let total = parseInt(state.totalAmount) + parseInt(productPrice);
         return {
           ...state,
-          cart: {...state.cart, [addedProduct.id]: updateCart},
+          cart: { ...state.cart, [addedProduct.id]: updateCart },
           totalAmount: total,
         };
       } else {
@@ -43,19 +44,27 @@ const cartReducer = (state = initState, action) => {
         );
         return {
           ...state,
-          cart: {...state.cart, [addedProduct.id]: newCartItem},
+          cart: { ...state.cart, [addedProduct.id]: newCartItem },
           totalAmount: state.totalAmount + productPrice,
         };
       }
 
     case REMOVE_PRODUCT:
       const targetItem = state.cart[action.pid];
-      const currentCartItems = {...state.cart};
+      const currentCartItems = { ...state.cart };
       delete currentCartItems[action.pid];
       return {
         ...state,
         cart: currentCartItems,
         totalAmount: state.totalAmount - targetItem.sum,
+      };
+
+    case CLEAR_CART:
+      console.log('action', action)
+      return {
+        ...state,
+        cart: {},
+        totalAmount: 0,
       };
     case REDUCE_PRODUCT:
       const selectedItem = state.cart[action.pid];
@@ -69,7 +78,7 @@ const cartReducer = (state = initState, action) => {
           selectedItem.productImage,
           selectedItem.sum - selectedItem.productPrice,
         );
-        updatedCartItem = {...state.cart, [action.pid]: updatedCart};
+        updatedCartItem = { ...state.cart, [action.pid]: updatedCart };
       }
       return {
         ...state,
@@ -88,7 +97,7 @@ const cartReducer = (state = initState, action) => {
           focusedItem.productImage,
           focusedItem.sum + focusedItem.productPrice,
         );
-        updatedCartItem = {...state.cart, [action.pid]: updatedCart};
+        updatedCartItem = { ...state.cart, [action.pid]: updatedCart };
       }
       return {
         ...state,
