@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import CustomButton from '../components/CustomButton';
 
 const windowWidth = Dimensions.get('window').width;
@@ -12,24 +12,26 @@ const WelcomeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <View style={styles.mainView}>
-          <View style={styles.titleView}>
-            <Text style={styles.title}>Welcome to Bolt </Text>
-          </View>
-          <View style={styles.imageView}>
-            <Image
-              style={styles.image}
-              source={require('../assets/welcome.png')}
-            />
-          </View>
-          <View style={styles.buttonView}>
-            <CustomButton title="Log In with phone" onPress={() => handlePress()} />
-            <View style={styles.optionView}>
-              <Text style={styles.optionText}>Shop with us</Text>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView style={{ flex: 1 }}>
+          <View style={styles.mainView}>
+            <View style={styles.titleView}>
+              <Text style={styles.title}>Welcome to Bolt </Text>
+            </View>
+            <View style={styles.imageView}>
+              <Image
+                style={styles.image}
+                source={require('../assets/welcome.png')}
+              />
+            </View>
+            <View style={styles.buttonView}>
+              <CustomButton title="Log In with phone" onPress={() => handlePress()} />
+              <View style={styles.optionView}>
+                <Text style={styles.optionText}>Shop with us</Text>
+              </View>
             </View>
           </View>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     </View>
   );

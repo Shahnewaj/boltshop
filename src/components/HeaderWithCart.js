@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     menuIconView: {
-        marginBottom: 20,
         marginTop: 10,
     },
     menuIcon: {

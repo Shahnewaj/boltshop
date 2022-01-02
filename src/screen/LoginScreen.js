@@ -52,12 +52,10 @@ const styles = StyleSheet.create({
     color: '#A6A6A6',
     fontSize: 16,
     fontFamily: 'Segoe UI',
-    marginHorizontal: 5,
   },
   inputField: {
     borderBottomColor: '#DADADA',
     borderBottomWidth: 1,
-    marginHorizontal: 10,
     marginVertical: 10,
     paddingVertical: 10,
     fontSize: 16,

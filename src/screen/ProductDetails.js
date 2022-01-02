@@ -5,6 +5,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  ScrollView,
+  SafeAreaView,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import HeaderBackButton from '../components/HeaderBackButton';
@@ -27,28 +29,32 @@ const ProductDetails = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <HeaderWithCart navigation={navigation} />
-      <View style={styles.mainView}>
-        <View style={styles.imageView}>
-          <Image
-            source={{ uri: targetProduct.image }}
-            style={styles.bannerImage}
-          />
-          <View style={styles.titleView}>
-            <Text style={styles.title}>{targetProduct.title}</Text>
-            <Text style={styles.price}>${targetProduct.price}</Text>
-          </View>
-          <View>
-            <Text>{targetProduct.description}</Text>
+      <SafeAreaView style={{ flex: 1 }}>
+        <HeaderWithCart navigation={navigation} />
+        <View style={styles.mainView}>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.imageView}>
+              <Image
+                source={{ uri: targetProduct.image }}
+                style={styles.bannerImage}
+              />
+              <View style={styles.titleView}>
+                <Text style={styles.title}>{targetProduct.title}</Text>
+                <Text style={styles.price}>${targetProduct.price}</Text>
+              </View>
+              <View>
+                <Text>{targetProduct.description}</Text>
+              </View>
+            </View>
+          </ScrollView>
+          <View style={styles.buttonView}>
+            <CustomButton
+              title="Add To Cart"
+              onPress={() => handleBuy()}
+            />
           </View>
         </View>
-        <View style={styles.buttonView}>
-          <CustomButton
-            title="Add To Cart"
-            onPress={() => handleBuy()}
-          />
-        </View>
-      </View>
+      </SafeAreaView>
     </View>
   );
 };
